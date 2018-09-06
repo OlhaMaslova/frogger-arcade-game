@@ -1,3 +1,11 @@
+// Variables declaration
+const boyIcon = document.querySelector('.boy');
+const princessIcon = document.querySelector('.princess');
+const catIcon = document.querySelector('.cat'); 
+const modal = document.querySelector('.modal');
+let playerImg;
+let allEnemies = [];
+
 // Enemies our player must avoid
 class Enemy {
     constructor(x,y, speed){
@@ -31,7 +39,7 @@ class Enemy {
                 player.sprite = 'images/explosion.png';
                 this.x = -100;
                 setTimeout(function(){
-                    player.sprite = 'images/char-princess-girl.png';
+                    player.sprite = playerImg;
                     player.x = 200;
                     player.y = 400;
                 }, 500);
@@ -44,16 +52,26 @@ class Enemy {
     }
 }
 
+// Instantiate Enemies
+let enemy = new Enemy (-100, 300, 100);
+let enemy1 = new Enemy (-100, 200, 200);
+let enemy2 = new Enemy (-100, 100, 300);
+let enemy3 = new Enemy (-100, 300, 400);
+let enemy4 = new Enemy (-100, 200, 500);
+let enemy5 = new Enemy (-100, 100, 150);
+let enemy6 = new Enemy (-100, 200, 250); 
+
+allEnemies.push(enemy, enemy6, enemy5, enemy4, enemy3, enemy2, enemy1);
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method. 
-
 class Player {
-    constructor(x, y, speed) {
+    constructor(x, y, speed, sprite) {
         this.x = x;
         this.y = y;
         this.speed = speed;
-        this.sprite = 'images/char-princess-girl.png';
+        this.sprite = sprite;
     }
 
     update() { 
@@ -94,20 +112,7 @@ class Player {
     }
 }
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-
-let allEnemies = [];
-let enemy = new Enemy (-100, 300, 100);
-let enemy1 = new Enemy (-100, 200, 200);
-let enemy2 = new Enemy (-100, 100, 300);
-let enemy3 = new Enemy (-100, 300, 400);
-let enemy4 = new Enemy (-100, 200, 500);
-let enemy5 = new Enemy (-100, 100, 150);
-let enemy6 = new Enemy (-100, 200, 250); 
-allEnemies.push(enemy, enemy6, enemy5, enemy4, enemy3, enemy2, enemy1);
-
+// Instantiate Player
 let player  = new Player(200, 400, 50);
 
 // This listens for key presses and sends the keys to your
@@ -122,3 +127,23 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+function startGame(icon){
+    if(icon==='boy'){
+        player.sprite='images/char-boy.png';
+        playerImg='images/char-boy.png';
+    }
+    if(icon==='princess'){
+        player.sprite='images/char-princess-girl.png';
+        playerImg='images/char-princess-girl.png';
+    }
+    if(icon==='cat'){
+        player.sprite='images/char-cat-girl.png';
+        playerImg='images/char-cat-girl.png';
+    }
+    modal.classList.remove('ShowModal');
+}
+
+boyIcon.addEventListener('click', startGame('boy'));
+princessIcon.addEventListener('click', startGame('princess'));
+catIcon.addEventListener('click', startGame('cat'));
