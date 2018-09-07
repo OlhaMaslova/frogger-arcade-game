@@ -31,7 +31,7 @@ body {
 	padding-top: 10px;
 }
 
-.PlayerIcon button {
+.player-icon button {
 	background-color: #c0e3f9;
 	border: .12rem solid transparent;
 	color: #ffffff;
@@ -41,12 +41,12 @@ body {
 	height: 150px;
 }
 
-.PlayerIcon button:hover {
+.player-icon button:hover {
 	box-shadow: 12px 14px 26px 0 rgba(100,65,80,.15);
 	background-color: #caebff;
 }
 
-.PlayerIcon button:focus {
+.player-icon button:focus {
 	background-color: #a0d0ee;
 	outline: none;
 }
