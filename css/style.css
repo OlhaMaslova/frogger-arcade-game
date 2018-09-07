@@ -3,7 +3,7 @@ body {
 }
 
 .modal {
-	display: none;
+	display: block;
 	position: fixed;
 	z-index: 1;
 	left: 0;
@@ -16,8 +16,8 @@ body {
 	padding-top: 120px;
 }
 
-.ShowModal{
-	display: block;
+.hide-modal{
+	display: none;
 }
 
 .content {

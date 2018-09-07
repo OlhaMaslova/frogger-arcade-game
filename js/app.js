@@ -4,6 +4,7 @@ const princessIcon = document.querySelector('.princess');
 const catIcon = document.querySelector('.cat'); 
 const modal = document.querySelector('.modal');
 let playerImg;
+let lives = 3;
 let allEnemies = [];
 
 // Enemies our player must avoid
@@ -38,7 +39,11 @@ class Enemy {
             player.y + 30 > this.y) {
                 player.sprite = 'images/explosion.png';
                 this.x = -100;
-                setTimeout(function(){
+                lives--;
+                if (lives=0){
+                    gameOver();
+                }
+                else setTimeout(function(){
                     player.sprite = playerImg;
                     player.x = 200;
                     player.y = 400;
@@ -71,7 +76,8 @@ class Player {
         this.x = x;
         this.y = y;
         this.speed = speed;
-        this.sprite = sprite;
+        // temporary img to be replaced by player icon 
+        this.sprite = 'images/grass-block.png';
     }
 
     update() { 
@@ -113,7 +119,7 @@ class Player {
 }
 
 // Instantiate Player
-let player  = new Player(200, 400, 50);
+let player  = new Player(202, 415, 50);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -141,9 +147,20 @@ function startGame(icon){
         player.sprite='images/char-cat-girl.png';
         playerImg='images/char-cat-girl.png';
     }
-    modal.classList.remove('ShowModal');
+    modal.classList.add('hide-modal');
 }
 
-boyIcon.addEventListener('click', startGame('boy'));
-princessIcon.addEventListener('click', startGame('princess'));
-catIcon.addEventListener('click', startGame('cat'));
+function gameOver(){
+
+}
+
+boyIcon.addEventListener('click', function() {
+    startGame('boy')
+});
+princessIcon.addEventListener('click', function() {
+    startGame('princess')
+});
+
+catIcon.addEventListener('click', function() {
+    startGame('cat')
+});
