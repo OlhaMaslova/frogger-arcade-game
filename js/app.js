@@ -37,8 +37,8 @@ class Enemy {
 
         // Detect collisions
         if (player.x < this.x + 60 &&
-            player.x + 30 > this.x &&
-            player.y < this.y + 20 &&
+            player.x + 60 > this.x &&
+            player.y < this.y + 30 &&
             player.y + 30 > this.y) {
                 player.sprite = 'images/explosion.png';
                 this.x = -100;
