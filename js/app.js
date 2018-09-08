@@ -12,14 +12,14 @@ let allEnemies = [];
 
 // Enemies our player must avoid
 class Enemy {
-    constructor(x,y, speed){
+    constructor(x,y){
         //Set image for enemy
         this.sprite = 'images/enemy-bug.png';
         //Set initial location
         this.x = x;
         this.y = y;
-        //Set the speed
-        this.speed = speed;
+        //Randomly set the speed 
+        this.speed = 100 + Math.floor(Math.random() * 222);
     }
 
     // Update the enemy's position, required method for game
@@ -58,12 +58,12 @@ class Enemy {
 }
 
 // Instantiate Enemies
-let enemy = new Enemy (-100, 310, 100);
-let enemy1 = new Enemy (-100, 230, 150);
-let enemy2 = new Enemy (-100, 140, 200);
-let enemy3 = new Enemy (-100, 60, 270);
-let enemy4 = new Enemy (-100, 140, 90);
-let enemy5 = new Enemy (-100, 60, 150);
+let enemy = new Enemy (-100, 310);
+let enemy1 = new Enemy (-100, 230);
+let enemy2 = new Enemy (-100, 140);
+let enemy3 = new Enemy (-100, 60);
+let enemy4 = new Enemy (-100, 140);
+let enemy5 = new Enemy (-100, 60);
 
 allEnemies.push(enemy, enemy5, enemy4, enemy3, enemy2, enemy1);
 
@@ -133,6 +133,8 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
+// Function startGame function sets the icon chosen by the user
+// and once selection is made it hides the modal view
 function startGame(icon){
     if(icon==='boy'){
         player.sprite='images/char-boy.png';
@@ -152,7 +154,7 @@ function startGame(icon){
 // Function to control lives
 function lives() {
     hearts--;
-    console.log('lives executed' + hearts);
+    // Display lives
     switch (hearts) {
         case 3: 
             heartsContainer.innerHTML = `<li><i class='fas fa-heart'></i></li>
@@ -177,10 +179,14 @@ function lives() {
     }
 }
 
+// Function gameOver shows game over modal view
+// and asks user if he/she wants to play again 
 function gameOver() {
     gameEnd.classList.remove('hide-modal');
 }
 
+
+// List of Event listeners
 boyIcon.addEventListener('click', function() {
     startGame('boy')
 });
