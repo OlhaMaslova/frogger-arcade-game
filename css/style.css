@@ -56,10 +56,12 @@ li {
 }
 
 .score-panel {
-	text-align: left;
-	width: 75%;
+	text-align: center;
+	width: 100%;
 	padding-top: 10px;
-	padding-left: 25%
+	font-size: 20px;
+	font-family: 'Noto Serif KR', sans-serif;
+	font-weight: 600;
 }
 
 .score-panel .hearts {
@@ -76,7 +78,6 @@ li {
 	display: inline-block;
 	color: #ff0000;
 }
-
 .show-game-over {
 	display: block;
 }
