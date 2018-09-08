@@ -2,9 +2,12 @@
 const boyIcon = document.querySelector('.boy');
 const princessIcon = document.querySelector('.princess');
 const catIcon = document.querySelector('.cat'); 
-const modal = document.querySelector('.modal');
+const gameStart = document.querySelector('.game-start');
+const gameEnd = document.querySelector('.game-over');
+const heartsContainer = document.querySelector('.hearts');
+const playAgainBtn = document.querySelector('.play-again-button');
 let playerImg;
-let lives = 3;
+let hearts = 3;
 let allEnemies = [];
 
 // Enemies our player must avoid
@@ -35,15 +38,12 @@ class Enemy {
         // Detect collisions
         if (player.x < this.x + 60 &&
             player.x + 30 > this.x &&
-            player.y < this.y + 25 &&
+            player.y < this.y + 20 &&
             player.y + 30 > this.y) {
                 player.sprite = 'images/explosion.png';
                 this.x = -100;
-                lives--;
-                if (lives=0){
-                    gameOver();
-                }
-                else setTimeout(function(){
+                lives();
+                setTimeout(function(){
                     player.sprite = playerImg;
                     player.x = 200;
                     player.y = 400;
@@ -58,15 +58,14 @@ class Enemy {
 }
 
 // Instantiate Enemies
-let enemy = new Enemy (-100, 300, 100);
-let enemy1 = new Enemy (-100, 200, 200);
-let enemy2 = new Enemy (-100, 100, 300);
-let enemy3 = new Enemy (-100, 300, 400);
-let enemy4 = new Enemy (-100, 200, 500);
-let enemy5 = new Enemy (-100, 100, 150);
-let enemy6 = new Enemy (-100, 200, 250); 
+let enemy = new Enemy (-100, 310, 100);
+let enemy1 = new Enemy (-100, 230, 150);
+let enemy2 = new Enemy (-100, 140, 200);
+let enemy3 = new Enemy (-100, 60, 270);
+let enemy4 = new Enemy (-100, 140, 90);
+let enemy5 = new Enemy (-100, 60, 150);
 
-allEnemies.push(enemy, enemy6, enemy5, enemy4, enemy3, enemy2, enemy1);
+allEnemies.push(enemy, enemy5, enemy4, enemy3, enemy2, enemy1);
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -147,11 +146,39 @@ function startGame(icon){
         player.sprite='images/char-cat-girl.png';
         playerImg='images/char-cat-girl.png';
     }
-    modal.classList.add('hide-modal');
+    gameStart.classList.add('hide-modal');
 }
 
-function gameOver(){
+// Function to control lives
+function lives() {
+    hearts--;
+    console.log('lives executed' + hearts);
+    switch (hearts) {
+        case 3: 
+            heartsContainer.innerHTML = `<li><i class='fas fa-heart'></i></li>
+                                         <li><i class='fas fa-heart'></i></li>
+                                         <li><i class='fas fa-heart'></i></li>`;
+            break;
+        case 2:
+            heartsContainer.innerHTML = `<li><i class='fas fa-heart'></i></li>
+                                         <li><i class='fas fa-heart'></i></li>
+                                         <li><i class='far fa-heart'></i></li>`;
+            break;
+        case 1:
+            heartsContainer.innerHTML = `<li><i class='fas fa-heart'></i></li>
+                                         <li><i class='far fa-heart'></i></li>
+                                         <li><i class='far fa-heart'></i></li>`;
+            break;
+        case 0:    
+            heartsContainer.innerHTML = `<li><i class='far fa-heart'></i></li>
+                                         <li><i class='far fa-heart'></i></li>
+                                         <li><i class='far fa-heart'></i></li>`;
+            gameOver();                     
+    }
+}
 
+function gameOver() {
+    gameEnd.classList.remove('hide-modal');
 }
 
 boyIcon.addEventListener('click', function() {
@@ -164,3 +191,11 @@ princessIcon.addEventListener('click', function() {
 catIcon.addEventListener('click', function() {
     startGame('cat')
 });
+
+playAgainBtn.addEventListener('click', function() {
+    hearts = 4;
+    lives();
+    startGame('playerImg');
+    gameEnd.classList.add('hide-modal');
+})
+

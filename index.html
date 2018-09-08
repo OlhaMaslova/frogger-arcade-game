@@ -4,22 +4,41 @@
     <meta charset="UTF-8">
     <title>Effective JavaScript: Frogger</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 </head>
 <body>
-	<div class="modal">
-			<div class="content">
-				<h2>
-					Choose your hero
-				</h2>
-				<p>
-					<span class="player-icon">
-						<button class="boy"><img src="images/char-boy.png" alt="boy icon"></button>
-						<button class="princess"><img src="images/char-princess-girl.png" alt="princess girl icon"></button>
-						<button class="cat"><img src="images/char-cat-girl.png" alt="cat girl icon"></button>
-					</span>
-				</p>
-			</div>
+	<div class="game-start modal">
+		<div class="content">
+			<h2>
+				Choose your hero
+			</h2>
+			<p>
+				<span class="player-icon">
+					<button class="boy"><img src="images/char-boy.png" alt="boy icon"></button>
+					<button class="princess"><img src="images/char-princess-girl.png" alt="princess girl icon"></button>
+					<button class="cat"><img src="images/char-cat-girl.png" alt="cat girl icon"></button>
+				</span>
+			</p>
 		</div>
+	</div>
+	<div class="game-over modal hide-modal">
+		<div class="content">
+			<h3>
+				Ooooooop...Game is over
+			</h3>
+			<p>
+				<li><i class="fas fa-frog"></i></li>
+				<button class="play-again-button">Play Again</button>
+			</p>
+		</div>
+	</div>
+	<section class="score-panel">
+		<ul class="hearts">
+			<li><i class="fas fa-heart"></i></li>
+			<li><i class="fas fa-heart"></i></li>
+			<li><i class="fas fa-heart"></i></li>
+		</ul>		
+	</section>
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
