@@ -4,7 +4,7 @@
 
 This is the third project in my Front-End Nanodegree program at Udacity. The idea of it is to use JavaScript object-oriented features to create an arcade game functionality. I was provided with the game engine (engine.js), most of the visual assets as well as image loading utility (resources.js).
 
-[Click here](https://olhamaslova.github.io/frontend-nanodegree-arcade-game/) if you want to try the game out yourself. 
+[Click here](https://olhamaslova.github.io/frogger-arcade-game/) if you want to try the game out yourself. 
 
 Game Instructions
 ===============================
